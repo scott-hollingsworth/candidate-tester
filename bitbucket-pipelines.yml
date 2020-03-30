@@ -15,7 +15,7 @@ pipelines:
         image: mcr.microsoft.com/dotnet/core/sdk:3.1
         script:
           - dotnet restore $DOTNET_PROJ
-          - dotnet build $DOTNET_PROJ
+          - dotnet publish -c release -o ./$DOTNET_DIR/build_output $DOTNET_PROJ
   #branches:
     #java/*:
     #dotnet/*:
