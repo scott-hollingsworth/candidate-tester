@@ -19,6 +19,11 @@ pipelines:
             - dotnet publish -c release -o ./$DOTNET_DIR/build_output $DOTNET_PROJ
     java/*:
       - step:
+          name: Start Sonar
+          script:
+            - echo "Starting Sonar"
+            - ./sonarqube-8.2.0.32929/bin/linux-x86-64/sonar.sh start -Dsonar.host.url=http://localhost:9000/ -Dsonar.branch=$BITBUCKET_BRANCH
+      - step:
           name: Build and Test Java Solution
           image: java:8
           script:
@@ -27,10 +32,10 @@ pipelines:
             - bash ./gradlew assemble
             - cd ..
       - step:
-          name: Sonar
+          name: Stop Sonar
           script:
-            - echo "Starting Sonar"
-            - ./sonarqube-8.2.0.32929/bin/linux-x86-64/sonar.sh start -Dsonar.host.url=http://localhost:9000/ -Dsonar.branch=$BITBUCKET_BRANCH
+            - echo "Stopping Sonar"
+            - ./sonarqube-8.2.0.32929/bin/linux-x86-64/sonar.sh stop -Dsonar.host.url=http://localhost:9000/ -Dsonar.branch=$BITBUCKET_BRANCH
     dotnet/*:
       - step:
           name: Build and Test .NET Solution
