@@ -18,10 +18,9 @@ pipelines:
             - dotnet restore $DOTNET_PROJ
             - dotnet publish -c release -o ./$DOTNET_DIR/build_output $DOTNET_PROJ
     java/*:
-      image: java:8
       - step:
           name: Build and Test Java Solution
-          #image: java:8
+          image: java:8
           script:
             - cd $JAVA_DIR
             - bash ./gradlew clean build
