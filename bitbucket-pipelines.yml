@@ -1,31 +1,31 @@
-env:
-  variables:
-    JAVA_DIR: java-webcrawler
-    JAVA_ARTIFACT: java-webcrawler/build/libs/webcrawler-0.0.1-SNAPSHOT.jar
-    DOTNET_DIR: dotnet-webcrawler
-    DOTNET_PROJ: dotnet-webcrawler/Buildit.Webcrawler.csproj
-
 pipelines:
   branches:
     master:
-      default:
-        - step:
-          name: Build and Test Java Solution
-          image: java:8
-          script:
-            - cd JAVA_DIR
-            - bash ./gradlew clean build
-            - bash ./gradlew assemble
-            - cd ..
-          artifacts:
-            - $JAVA_ARTIFACT
-        - step:
-          name: Build and Test .NET Solution
-          caches: 
-            - dotnetcore
-          image: mcr.microsoft.com/dotnet/core/sdk:3.1
-          script:
-            - dotnet restore
-            - dotnet build $DOTNET_PROJ
+      custom:
+        custom-name-and-region: Candidate Tester
+          - variables:
+            - JAVA_DIR: java-webcrawler
+            - JAVA_ARTIFACT: java-webcrawler/build/libs/webcrawler-0.0.1-SNAPSHOT.jar
+            - DOTNET_DIR: dotnet-webcrawler
+            - DOTNET_PROJ: dotnet-webcrawler/Buildit.Webcrawler.csproj
+          - step:
+            name: Build and Test Java Solution
+            image: java:8
+            script:
+              - cd JAVA_DIR
+              - bash ./gradlew clean build
+              - bash ./gradlew assemble
+              - cd ..
+            artifacts:
+              - $JAVA_ARTIFACT
+          - step:
+            name: Build and Test .NET Solution
+            caches: 
+              - dotnetcore
+            image: mcr.microsoft.com/dotnet/core/sdk:3.1
+            script:
+              - dotnet restore
+              - dotnet build $DOTNET_PROJ
     java/*:
     dotnet/*:
+    javascript/*:
