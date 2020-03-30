@@ -26,6 +26,8 @@ pipelines:
             - bash ./gradlew clean build
             - bash ./gradlew assemble
             - cd ..
+            - echo "Starting Sonar"
+            - ./sonarqube-8.2.0.32929/bin/linux-x86-64/sonar.sh -Dsonar.host.url=http://localhost:9000/ -Dsonar.branch=$BITBUCKET_BRANCH
     dotnet/*:
       - step:
           name: Build and Test .NET Solution
