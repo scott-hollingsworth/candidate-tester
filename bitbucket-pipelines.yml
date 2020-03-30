@@ -14,7 +14,7 @@ pipelines:
           - dotnetcore
         image: mcr.microsoft.com/dotnet/core/sdk:3.1
         script:
-          - dotnet restore
+          - dotnet restore $DOTNET_PROJ
           - dotnet build $DOTNET_PROJ
   #branches:
     #java/*:
