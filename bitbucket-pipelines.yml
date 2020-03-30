@@ -4,7 +4,7 @@ pipelines:
         name: Build and Test Java Solution
         image: java:8
         script:
-          - cd JAVA_DIR
+          - cd $JAVA_DIR
           - bash ./gradlew clean build
           - bash ./gradlew assemble
           - cd ..
