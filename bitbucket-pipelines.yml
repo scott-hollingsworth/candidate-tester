@@ -22,7 +22,7 @@ pipelines:
           name: Build and Test Java Solution
           image: java:8
           script:
-            - cd JAVA_DIR
+            - cd $JAVA_DIR
             - bash ./gradlew clean build
             - bash ./gradlew assemble
             - cd ..
@@ -33,5 +33,5 @@ pipelines:
             - dotnetcore
           image: mcr.microsoft.com/dotnet/core/sdk:3.1
           script:
-            - dotnet restore
-            - dotnet build $DOTNET_PROJ
+            - dotnet restore $DOTNET_PROJ
+            - dotnet publish -c release -o ./$DOTNET_DIR/build_output $DOTNET_PROJ
