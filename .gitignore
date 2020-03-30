@@ -14,23 +14,27 @@ build/
 .springBeans
 .sts4-cache
 
+
 ### IntelliJ IDEA ###
-.idea
+*.idea
 *.iws
 *.iml
 *.ipr
-out/
+*out/
 
 ### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+*/nbproject/private/
+*/nbbuild/
+*/dist/
+*/nbdist/
+*/.nb-gradle/
 
 ### VS Code ###
-.vscode/
+*.vscode/
+
+### DotNetCore ###
+*/bin
+*/obj
 
 ### Mac Junk ###
-.DS_Store
-
+*.DS_Store

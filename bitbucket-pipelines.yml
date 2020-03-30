@@ -17,22 +17,26 @@ pipelines:
           script:
             - dotnet restore $DOTNET_PROJ
             - dotnet publish -c release -o ./$DOTNET_DIR/build_output $DOTNET_PROJ
+      # - step:
+      #     name: Build and Test JavaScript Solution
+      #     image: 
+      #     script:
     java/*:
       - step:
           name: Build and Test Java Solution
           image: java:8
           script:
-            - echo "Starting Sonar"
-            - ./sonarqube-7.1/bin/linux-x86-64/sonar.sh start -Dsonar.branch=$BITBUCKET_BRANCH
+            # - echo "Starting Sonar"
+            # - ./sonarqube-7.1/bin/linux-x86-64/sonar.sh start -Dsonar.branch=$BITBUCKET_BRANCH
             - cd $JAVA_DIR
             - bash ./gradlew clean build
             - cd ..
-            - echo "Stopping Sonar"
-            - ./sonarqube-7.1/bin/linux-x86-64/sonar.sh stop -Dsonar.branch=$BITBUCKET_BRANCH
-          artifacts:
-            - dist/**
-            - reports/*.txt
-            - sonarqube-7.1/logs**
+            # - echo "Stopping Sonar"
+            # - ./sonarqube-7.1/bin/linux-x86-64/sonar.sh stop -Dsonar.branch=$BITBUCKET_BRANCH
+          # artifacts:
+          #  - dist/**
+          #  - reports/*.txt
+          #  - sonarqube*/logs**
     dotnet/*:
       - step:
           name: Build and Test .NET Solution
@@ -42,3 +46,8 @@ pipelines:
           script:
             - dotnet restore $DOTNET_PROJ
             - dotnet publish -c release -o ./$DOTNET_DIR/build_output $DOTNET_PROJ
+    # javascript/*:
+    #   - step:
+    #       name: Build and Test JavaScript Solution
+    #       image:
+    #       script:
