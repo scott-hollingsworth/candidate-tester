@@ -1,24 +1,21 @@
 pipelines:
-  branches:
-    master:
-      default:
-        - step:
-          name: Build and Test Java Solution
-          image: java:8
-          script:
-            - cd JAVA_DIR
-            - bash ./gradlew clean build
-            - bash ./gradlew assemble
-            - cd ..
-          artifacts:
-            - $JAVA_ARTIFACT
-        - step:
-          name: Build and Test .NET Solution
-          caches: 
-            - dotnetcore
-          image: mcr.microsoft.com/dotnet/core/sdk:3.1
-          script:
-            - dotnet restore
-            - dotnet build $DOTNET_PROJ
-    java/*:
-    dotnet/*:
+  default:
+    - step:
+        name: Build and Test Java Solution
+        image: java:8
+        script:
+          - cd JAVA_DIR
+          - bash ./gradlew clean build
+          - bash ./gradlew assemble
+          - cd ..
+    - step:
+        name: Build and Test .NET Solution
+        caches: 
+          - dotnetcore
+        image: mcr.microsoft.com/dotnet/core/sdk:3.1
+        script:
+          - dotnet restore
+          - dotnet build $DOTNET_PROJ
+  #branches:
+    #java/*:
+    #dotnet/*:
