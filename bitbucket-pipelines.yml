@@ -3,7 +3,7 @@ pipelines:
     master:
       - step:
           name: Build and Test Java Solution
-          image: java:8
+          image: java:11
           script:
             - cd $JAVA_DIR
             - bash ./gradlew clean build
@@ -24,7 +24,7 @@ pipelines:
     java/*:
       - step:
           name: Build and Test Java Solution
-          image: java:8
+          image: java:11
           script:
             # - echo "Starting Sonar"
             # - ./sonarqube-7.1/bin/linux-x86-64/sonar.sh start -Dsonar.branch=$BITBUCKET_BRANCH
