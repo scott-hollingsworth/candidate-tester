@@ -27,6 +27,7 @@ pipelines:
           image: maven:3-jdk-11
           script:
             - echo "Starting Sonar"
+            - chown ./sonarqube-8.2.0.32929/bin/linux-x86-64/sonar.sh 
             - ./sonarqube-8.2.0.32929/bin/linux-x86-64/sonar.sh start -Dsonar.branch=$BITBUCKET_BRANCH
             - cd $JAVA_DIR
             - bash ./gradlew clean build
