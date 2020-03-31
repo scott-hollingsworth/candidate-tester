@@ -1,1 +1,0 @@
-{"version":3,"sources":["webpack:///./src/main/js/apps/quality-gates/styles.css"],"names":[],"mappings":"AAAA,sBAAsB,iBAAiB,4CAA4C,gBAAgB,iB","file":"css/280.88d360b3.chunk.css","sourcesContent":[".quality-gate-section{max-width:1440px}.quality-gate-section+.quality-gate-section{margin-top:10px;padding-top:20px}"],"sourceRoot":""}
