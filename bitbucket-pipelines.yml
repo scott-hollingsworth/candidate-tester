@@ -24,7 +24,7 @@ pipelines:
     java/*:
       - step:
           name: Build and Test Java Solution
-          image: java:11
+          image: maven:3-jdk-11
           script:
             # - echo "Starting Sonar"
             # - ./sonarqube-7.1/bin/linux-x86-64/sonar.sh start -Dsonar.branch=$BITBUCKET_BRANCH
