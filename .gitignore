@@ -37,4 +37,5 @@ build/
 */obj
 
 ### Mac Junk ###
+.DS_Store
 *.DS_Store
