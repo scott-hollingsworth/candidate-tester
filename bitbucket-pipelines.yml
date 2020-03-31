@@ -3,7 +3,7 @@ pipelines:
     master:
       - step:
           name: Build and Test Java Solution
-          image: java:11
+          image: maven:3-jdk-11
           script:
             - cd $JAVA_DIR
             - bash ./gradlew clean build
