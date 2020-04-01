@@ -1,6 +1,6 @@
 # README #
 
-This README documents the necessary steps to test a candidate's application.
+This README documents the necessary steps to test a candidate's submission for the Web Crawler exercise.
 
 ### What is this repository for? ###
 
