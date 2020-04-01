@@ -26,19 +26,27 @@ pipelines:
           name: Build and Test Java Solution
           image: maven:3-jdk-11
           script:
+            - set -eu
+            - set -o pipefail
             - cd $JAVA_DIR
-            - pipe: sonarsource/sonarcloud-scan:1.0.1
+            # - bash ./check-git-commits.sh
+            # - pipe: sonarsource/sonarcloud-scan:1.0.1
             #   variables:
             #     EXTRA_ARGS: -Dsonar.projectDescription=\"Project with sonarcloud-scan pipe\" -Dsonar.eslint.reportPaths=\"report.txt\"
             #     SONAR_SCANNER_OPTS: -Xmx512m
             #     DEBUG: "true"
             #     SONAR__TOKEN: ${SONAR_TOKEN}
             - bash ./gradlew clean build
+            # - bash ./gradlew clean bootrun
+            # - curl "http://localhost:8080/crawl?${STATIC_URL}"
             - cd ..
+            # figure out output name and location
+            # - bash ./compareJSONs.sh expected.json $JAVA_DIR/output.json
+            - echo "The candidate's submission has successfully passed the tests."
           artifacts:
-           - dist/**
+           - $JAVA_DIR/build/reports/*
            - reports/*.txt
-           - sonarqube*/logs**
+           #the output json
     dotnet/*:
       - step:
           name: Build and Test .NET Solution
@@ -46,6 +54,9 @@ pipelines:
             - dotnetcore
           image: mcr.microsoft.com/dotnet/core/sdk:3.1
           script:
+            - set -eu
+            - set -o pipefail
+            # - bash ./$DOTNET_DIR/check-git-commits.sh
             # - pipe: sonarsource/sonarcloud-scan:1.0.1
             #     variables:
             #       EXTRA_ARGS: -Dsonar.projectDescription=\"Project with sonarcloud-scan pipe\" -Dsonar.eslint.reportPaths=\"report.txt\"
@@ -54,6 +65,10 @@ pipelines:
             #       SONAR__TOKEN: ${SONAR_TOKEN}
             - dotnet restore $DOTNET_PROJ
             - dotnet publish -c release -o ./$DOTNET_DIR/build_output $DOTNET_PROJ
+            # - bash ./compareJSONs.sh expected.json $DOTNET_DIR/output.json
+            artifacts:
+           - reports/*.txt
+           #the output json
     # javascript/*:
     #   - step:
     #       name: Build and Test JavaScript Solution
