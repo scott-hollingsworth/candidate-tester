@@ -3,7 +3,7 @@ pipelines:
     master:
       - step:
           name: Build and Test Java Solution
-          image: maven:3-jdk-11
+          image: java:8
           script:
             - cd $JAVA_DIR
             - bash ./gradlew clean build
@@ -24,7 +24,7 @@ pipelines:
     java/*:
       - step:
           name: Build and Test Java Solution
-          image: maven:3-jdk-11
+          image: java:8
           script:
             - set -eu
             - set -o pipefail
@@ -32,7 +32,7 @@ pipelines:
             # - bash ./check-git-commits.sh
             # - pipe: sonarsource/sonarcloud-scan:1.0.1
             #   variables:
-            #     EXTRA_ARGS: -Dsonar.projectDescription=\"Project with sonarcloud-scan pipe\" -Dsonar.eslint.reportPaths=\"report.txt\"
+            #     EXTRA_ARGS: -Dsonar.projectDescription=\"Candidate Tester" -Dsonar.eslint.reportPaths=\"report.txt\" -Dsonar.branch.name=$BITBUCKET_BRANCH
             #     SONAR_SCANNER_OPTS: -Xmx512m
             #     DEBUG: "true"
             #     SONAR__TOKEN: ${SONAR_TOKEN}
@@ -59,7 +59,7 @@ pipelines:
             # - bash ./$DOTNET_DIR/check-git-commits.sh
             # - pipe: sonarsource/sonarcloud-scan:1.0.1
             #     variables:
-            #       EXTRA_ARGS: -Dsonar.projectDescription=\"Project with sonarcloud-scan pipe\" -Dsonar.eslint.reportPaths=\"report.txt\"
+            #       EXTRA_ARGS: -Dsonar.projectDescription=\"Candidate Tester" -Dsonar.eslint.reportPaths=\"report.txt\" -Dsonar.branch.name=$BITBUCKET_BRANCH
             #       SONAR_SCANNER_OPTS: -Xmx512m
             #       DEBUG: "true"
             #       SONAR__TOKEN: ${SONAR_TOKEN}
@@ -67,7 +67,7 @@ pipelines:
             - dotnet publish -c release -o ./$DOTNET_DIR/build_output $DOTNET_PROJ
             # - bash ./compareJSONs.sh expected.json $DOTNET_DIR/output.json
             artifacts:
-           - reports/*.txt
+              - reports/*.txt
            #the output json
     # javascript/*:
     #   - step:
