@@ -23,6 +23,7 @@ pipelines:
           caches:
             - node
           script:
+            - cd javascript-webcrawler
             - yarn install
             - yarn lint
             - yarn test
