@@ -17,10 +17,16 @@ pipelines:
           script:
             - dotnet restore $DOTNET_PROJ
             - dotnet publish -c release -o ./$DOTNET_DIR/build_output $DOTNET_PROJ
-      # - step:
-      #     name: Build and Test JavaScript Solution
-      #     image: 
-      #     script:
+      - step:
+          name: Build and Test JavaScript Solution
+          image: circleci/node:12.10.0-browsers
+          caches:
+            - node
+          script:
+            - yarn install
+            - yarn lint
+            - yarn test
+            - yarn test:e2e
     java/*:
       - step:
           name: Build and Test Java Solution
@@ -72,5 +78,8 @@ pipelines:
     # javascript/*:
     #   - step:
     #       name: Build and Test JavaScript Solution
-    #       image:
+    #       image: circleci/node:12.10.0-browsers
+    #       caches:
+    #         - node
     #       script:
+    #         - yarn test:report
