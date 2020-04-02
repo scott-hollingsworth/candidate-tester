@@ -30,9 +30,9 @@ pipelines:
             - dotnetcore
           image: mcr.microsoft.com/dotnet/core/sdk:3.1
           script:
+            - apt-get update
             - set -eu
             - set -o pipefail
-            - apt-get update
             - apt-get install -y jq
             # - pipe: sonarsource/sonarcloud-scan:1.0.1
             #     variables:
