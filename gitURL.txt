@@ -1,1 +1,1 @@
-gitUrl=https://github.com/scott-hollingsworth/sample-java-crawler.git
+gitUrl=
