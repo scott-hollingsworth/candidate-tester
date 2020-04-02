@@ -1,34 +1,5 @@
 pipelines:
   branches:
-    master:
-      - step:
-          name: Build and Test Java Solution
-          image: java:8
-          script:
-            - cd $JAVA_DIR
-            - bash ./gradlew clean build
-            - bash ./gradlew assemble
-            - cd ..
-      - step:
-          name: Build and Test .NET Solution
-          image: mcr.microsoft.com/dotnet/core/sdk:3.1
-          caches: 
-            - dotnetcore
-          script:
-            - dotnet restore $DOTNET_PROJ
-            - dotnet publish -c release -o ./$DOTNET_DIR/build_output $DOTNET_PROJ
-      - step:
-          name: Build and Test JavaScript Solution
-          image: circleci/node:12.10.0-browsers
-          caches:
-            - nodecustom
-            - yarn
-          script:
-            - cd $JAVASCRIPT_DIR
-            - yarn install
-            - yarn lint
-            - yarn test:ci
-            - yarn test:ci:e2e
     java/*:
       - step:
           name: Build and Test Java Solution
@@ -43,14 +14,13 @@ pipelines:
             #     DEBUG: "true"
             #     SONAR__TOKEN: ${SONAR_TOKEN}
             # figure out output name and location
-            # - bash ./scripts/git-clone.sh $JAVA_DIR
-            # - bash ./scripts/java-output-test.sh $JAVA_DIR
-            - echo "--- The candidate's submission has PASSED ---"
+            - bash ./scripts/git-clone.sh $JAVA_DIR
+            - bash ./scripts/java-output-test.sh $JAVA_DIR
+            - echo "--- The Candidate's Submission PASSED ---"
           artifacts:
            - $JAVA_DIR/output.json
            - $JAVA_DIR/build/reports/*
            - reports/*.txt
-           #the output json
     dotnet/*:
       - step:
           name: Build and Test .NET Solution
@@ -60,17 +30,15 @@ pipelines:
           script:
             - set -eu
             - set -o pipefail
-            # - bash ./scripts/git-clone.sh $DOTNET_DIR
-            # - bash ./scripts/check-git-commits.sh $DOTNET_DIR
             # - pipe: sonarsource/sonarcloud-scan:1.0.1
             #     variables:
             #       EXTRA_ARGS: -Dsonar.projectDescription=\"Candidate Tester" -Dsonar.eslint.reportPaths=\"report.txt\" -Dsonar.branch.name=$BITBUCKET_BRANCH
             #       SONAR_SCANNER_OPTS: -Xmx512m
             #       DEBUG: "true"
             #       SONAR__TOKEN: ${SONAR_TOKEN}
-            - dotnet restore $DOTNET_PROJ
-            - dotnet publish -c release -o ./$DOTNET_DIR/build_output $DOTNET_PROJ
-            # - bash ./scripts/compareJSONs.sh expected.json $DOTNET_DIR/output.json
+            - bash ./scripts/git-clone.sh $DOTNET_DIR
+            - bash ./scripts/dotnet-output-test.sh $DOTNET_DIR
+            - echo "--- The Candidate's Submission PASSED ---"
           artifacts:
             - reports/*.txt
             - $DOTNET_DIR/output.json
