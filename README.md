@@ -20,7 +20,7 @@ To test a candidate's submission, follow these steps:
 
 * Create a branch titled programminglanguage/candidates-name - EX: java/john-smith
 * Currently available languages/branch names are java, dotnet, and javascript
-* In this branch, locate the GitURL.txt file and paste the Git URL used to clone the repo
+* In this branch, locate the GitURL.txt file and paste the candidate's Git URL used to clone their repo
 * Push the change to the branch and check the Bitbucket build pipeline status for your branch
 * Record the results and delete the branch
 * Report the results to the recruiter

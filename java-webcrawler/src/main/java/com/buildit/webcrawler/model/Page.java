@@ -1,49 +1,51 @@
 package com.buildit.webcrawler.model;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class Page {
 
     private String uri;
-    private Set<String> internalLinks;
-    private Set<String> externalLinks;
-    private Set<String> images;
+    private List<String> internalLinks;
+    private List<String> externalLinks;
+    private List<String> images;
 
-    public Page(String url) {
-        this.uri = url;
-        this.internalLinks = new HashSet<>();
-        this.externalLinks = new HashSet<>();
-        this.images = new HashSet<>();
+    public Page() {
+        this.uri = "";
+        this.internalLinks = new ArrayList<>();
+        this.externalLinks = new ArrayList<>();
+        this.images = new ArrayList<>();
     }
 
     public String getUri() {
         return uri;
     }
 
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
     public List<String> getInternalLinks() {
-        return new ArrayList<>(internalLinks);
+        return internalLinks;
+    }
+
+    public void setInternalLinks(List<String> internalLinks) {
+        this.internalLinks = internalLinks;
     }
 
     public List<String> getExternalLinks() {
-        return new ArrayList<>(externalLinks);
+        return externalLinks;
+    }
+
+    public void setExternalLinks(List<String> externalLinks) {
+        this.externalLinks = externalLinks;
     }
 
     public List<String> getImages() {
-        return new ArrayList<>(images);
+        return images;
     }
 
-    public void addInternalLink(String link) {
-        internalLinks.add(link);
-    }
-
-    public void addExternalLink(String link) {
-        externalLinks.add(link);
-    }
-
-    public void addImage(String link) {
-        images.add(link);
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 }
