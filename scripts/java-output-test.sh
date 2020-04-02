@@ -3,7 +3,7 @@ testUrl="https://www.jamesqquick.com/"
 cd $1
 echo Launching Candidate\'s Application...
 ./gradlew clean bootrun &> /dev/null &
-sleep 15[s]
+sleep 15
 echo Getting Candidate\'s Output...
 curl http://localhost:8080/crawl?url=$testUrl -o output.json
 
