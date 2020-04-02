@@ -1,7 +1,7 @@
 #Takes branch directory as argument
 echo Cloning Candidate\'s Repo....
 gitURL="$(cat gitURL.txt | cut -d'=' -f 2)"
-if(-z $gitURL); then
+if [ -z "$gitURL" ]; then
     echo gitURL not \set - insert the url into URL.txt to begin
     exit 1
 fi
