@@ -86,7 +86,6 @@ pipelines:
             - yarn
           script:
             - cd $JAVASCRIPT_DIR
-            - yarn cache dir
             - yarn install
             - yarn lint
             - yarn test --passWithNoTests
@@ -95,4 +94,4 @@ pipelines:
 definitions:
   caches:
     nodecustom: ./$JAVASCRIPT_DIR/node_modules
-    yarn: /usr/local/share/.cache/yarn
+    yarn: $JAVASCRIPT_YARN_CACHE
