@@ -7,6 +7,8 @@ pipelines:
           script:
             - set -eu
             - set -o pipefail
+            - apt-get update
+            - apt-get install -y jq
             # - pipe: sonarsource/sonarcloud-scan:1.0.1
             #   variables:
             #     EXTRA_ARGS: -Dsonar.projectDescription=\"Candidate Tester" -Dsonar.eslint.reportPaths=\"report.txt\" -Dsonar.branch.name=$BITBUCKET_BRANCH
@@ -30,6 +32,8 @@ pipelines:
           script:
             - set -eu
             - set -o pipefail
+            - apt-get update
+            - apt-get install -y jq
             # - pipe: sonarsource/sonarcloud-scan:1.0.1
             #     variables:
             #       EXTRA_ARGS: -Dsonar.projectDescription=\"Candidate Tester" -Dsonar.eslint.reportPaths=\"report.txt\" -Dsonar.branch.name=$BITBUCKET_BRANCH
