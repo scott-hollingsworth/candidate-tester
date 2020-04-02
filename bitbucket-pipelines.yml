@@ -27,8 +27,8 @@ pipelines:
             - cd $JAVASCRIPT_DIR
             - yarn install
             - yarn lint
-            - yarn test --passWithNoTests
-            - yarn test:e2e
+            - yarn test:ci
+            - yarn test:ci:e2e
     java/*:
       - step:
           name: Build and Test Java Solution
@@ -85,10 +85,10 @@ pipelines:
             - cd $JAVASCRIPT_DIR
             - yarn install
             - yarn lint
-            - yarn test --passWithNoTests
-            - yarn test:e2e
+            - yarn test:ci
+            - yarn test:ci:e2e
 
 definitions:
   caches:
-    nodecustom: ./node_modules
-    yarn: /usr/local/share/.cache/yarn
+    nodecustom: ./$JAVASCRIPT_DIR/node_modules
+    yarn: $JAVASCRIPT_YARN_CACHE
