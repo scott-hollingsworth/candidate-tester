@@ -6,7 +6,8 @@ echo Launching Candidate\'s Application...
 sleep 15
 echo Getting Candidate\'s Output...
 curl http://localhost:8080/crawl?url=$testUrl -o output.json
-
+ls
 echo Comparing Output to Expected...
 cd ..
+ls
 bash ./scripts/compareJSONs.sh expected.json $1/output.json
