@@ -1,1 +1,1 @@
-gitUrl=https://scott-hollingsworth@bitbucket.org/digitalrigbitbucketteam/test-buildit-java-webcrawler.git
+gitUrl=https://scott-hollingsworth:S.119120103c@bitbucket.org/digitalrigbitbucketteam/test-buildit-java-webcrawler.git
