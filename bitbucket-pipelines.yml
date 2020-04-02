@@ -3,10 +3,12 @@ pipelines:
     java/*:
       - step:
           name: Build and Test Java Solution
-          image: java:8
+          image: openjdk:8
           script:
+            - apt-get update
             - set -eu
             - set -o pipefail
+            - apt-get install -y jq
             # - pipe: sonarsource/sonarcloud-scan:1.0.1
             #   variables:
             #     EXTRA_ARGS: -Dsonar.projectDescription=\"Candidate Tester" -Dsonar.eslint.reportPaths=\"report.txt\" -Dsonar.branch.name=$BITBUCKET_BRANCH
@@ -18,9 +20,9 @@ pipelines:
             - bash ./scripts/java-output-test.sh $JAVA_DIR
             - echo "--- The Candidate's Submission PASSED ---"
           artifacts:
-           - $JAVA_DIR/output.json
-           - $JAVA_DIR/build/reports/*
-           - reports/*.txt
+           - ./$JAVA_DIR/output.json
+           - ./$JAVA_DIR/build/reports/*
+           - ./reports/*.txt
     dotnet/*:
       - step:
           name: Build and Test .NET Solution
@@ -28,8 +30,10 @@ pipelines:
             - dotnetcore
           image: mcr.microsoft.com/dotnet/core/sdk:3.1
           script:
+            - apt-get update
             - set -eu
             - set -o pipefail
+            - apt-get install -y jq
             # - pipe: sonarsource/sonarcloud-scan:1.0.1
             #     variables:
             #       EXTRA_ARGS: -Dsonar.projectDescription=\"Candidate Tester" -Dsonar.eslint.reportPaths=\"report.txt\" -Dsonar.branch.name=$BITBUCKET_BRANCH
