@@ -11,16 +11,24 @@ pipelines:
             - cd ..
       - step:
           name: Build and Test .NET Solution
+          image: mcr.microsoft.com/dotnet/core/sdk:3.1
           caches: 
             - dotnetcore
-          image: mcr.microsoft.com/dotnet/core/sdk:3.1
           script:
             - dotnet restore $DOTNET_PROJ
             - dotnet publish -c release -o ./$DOTNET_DIR/build_output $DOTNET_PROJ
-      # - step:
-      #     name: Build and Test JavaScript Solution
-      #     image: 
-      #     script:
+      - step:
+          name: Build and Test JavaScript Solution
+          image: circleci/node:12.10.0-browsers
+          caches:
+            - nodecustom
+            - yarn
+          script:
+            - cd $JAVASCRIPT_DIR
+            - yarn install
+            - yarn lint
+            - yarn test --passWithNoTests
+            - yarn test:e2e
     java/*:
       - step:
           name: Build and Test Java Solution
@@ -70,8 +78,21 @@ pipelines:
           artifacts:
             - reports/*.txt
            #the output json
-    # javascript/*:
-    #   - step:
-    #       name: Build and Test JavaScript Solution
-    #       image:
-    #       script:
+    javascript/*:
+      - step:
+          name: Build and Test JavaScript Solution
+          image: circleci/node:12.10.0-browsers
+          caches:
+            - nodecustom
+            - yarn
+          script:
+            - cd $JAVASCRIPT_DIR
+            - yarn install
+            - yarn lint
+            - yarn test --passWithNoTests
+            - yarn test:e2e
+
+definitions:
+  caches:
+    nodecustom: ./node_modules
+    yarn: /usr/local/share/.cache/yarn
