@@ -3,7 +3,7 @@ pipelines:
     java/*:
       - step:
           name: Build and Test Java Solution
-          image: java:8
+          image: openjdk:8
           script:
             - apt-get update
             - set -eu
