@@ -56,7 +56,7 @@ pipelines:
           script:
             # - bash ./scripts/git-clone.sh $JAVASCRIPT_DIR
             - cd $JAVASCRIPT_DIR
-            - curl -O $TEST_DOMAIN/expected.json
+            - curl -s -S -O $TEST_DOMAIN/expected.json
             - yarn install
             - yarn lint:ci
             - yarn test:ci
