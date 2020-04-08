@@ -54,7 +54,7 @@ pipelines:
             - nodecustom
             - yarn
           script:
-            - bash ./scripts/git-clone.sh $JAVASCRIPT_DIR
+            # - bash ./scripts/git-clone.sh $JAVASCRIPT_DIR
             - cd $JAVASCRIPT_DIR
             - curl -O $TEST_DOMAIN/expected.json
             - yarn install
