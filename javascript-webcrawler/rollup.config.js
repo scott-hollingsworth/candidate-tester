@@ -4,7 +4,10 @@ import commonjs from 'rollup-plugin-commonjs'
 
 import serve from 'rollup-plugin-serve'
 
-const local = process.env.LOCAL
+const isLocal = process.env.LOCAL
+
+const host = process.env.CRAWLER_HOST || 'localhost'
+const port = process.env.CRAWLER_PORT || 9000
 
 export default {
   input: 'src/index.js',
@@ -21,17 +24,12 @@ export default {
       externalHelpers: true,
     }),
     commonjs(),
-    local && serve({
+    isLocal && serve({
       open: false,
       verbose: false,
       contentBase: ['public', 'dist'],
-      host: 'localhost',
-      port: 8080,
-      // https: {
-      //   key: readFileSync('/path/to/server.key'),
-      //   cert: readFileSync('/path/to/server.crt'),
-      //   ca: readFileSync('/path/to/ca.pem'),
-      // },
+      host,
+      port,
     }),
   ],
 }

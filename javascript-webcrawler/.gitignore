@@ -69,3 +69,9 @@ yarn-error.log
 
 # Build
 dist/
+
+# E2E fixture data
+expected.json
+
+# VSCode
+*.code-workspace

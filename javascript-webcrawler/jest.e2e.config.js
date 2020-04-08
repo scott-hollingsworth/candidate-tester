@@ -1,6 +1,6 @@
 module.exports = {
   preset: 'jest-puppeteer',
-  testRegex: './*\\.test\\.js$',
+  testRegex: '/e2e/.*\\.test\\.js$',
   reporters: [
     'default',
     ['jest-junit', {
