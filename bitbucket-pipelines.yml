@@ -21,8 +21,8 @@ pipelines:
             - bash ./scripts/java-output-test.sh $JAVA_DIR
             - echo "The Candidate's Score is "+$SCORE
           artifacts:
-           - */output.json
-           - expected.json
+            - $JAVA_DIR/output.json
+            - expected.json
     dotnet/*:
       - step:
           name: Build and Test .NET Solution
@@ -45,7 +45,7 @@ pipelines:
             - bash ./scripts/dotnet-output-test.sh $DOTNET_DIR
             - echo "The Candidate's Score is "+$SCORE
           artifacts:
-            - */output.json
+            - $DOTNET_DIR/output.json
             - expected.json
     javascript/*:
       - step:
