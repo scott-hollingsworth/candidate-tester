@@ -1,5 +1,3 @@
-testUrl="https://www.jamesqquick.com/"
-
 cd $1
 echo Launching Candidate\'s Application...
 dotnet restore
@@ -20,7 +18,7 @@ else
 fi
 
 echo Getting Candidate\'s Output...
-curl http://localhost:8080/crawl?url=$testUrl -o output.json
+curl http://localhost:8080/crawl?url=$TEST_DOMAIN -o output.json
 
 echo Comparing Output to Expected...
 cd ..

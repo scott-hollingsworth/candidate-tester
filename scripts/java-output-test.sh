@@ -1,5 +1,3 @@
-testUrl="https://www.jamesqquick.com/"
-
 cd $1
 echo Launching Candidate\'s Application...
 ./gradlew clean bootrun &> /dev/null &
@@ -15,7 +13,7 @@ else
     exit 1
 fi
 echo Getting Candidate\'s Output...
-curl http://localhost:8080/crawl?url=$testUrl -o output.json
+curl http://localhost:8080/crawl?url=$TEST_DOMAIN -o output.json
 echo Comparing Output to Expected...
 cd ..
 bash ./scripts/compareJSONs.sh expected.json $1/output.json
