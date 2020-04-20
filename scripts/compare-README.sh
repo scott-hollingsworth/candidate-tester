@@ -12,6 +12,7 @@ fi
 #Compare README
 if cmp "$originalREADME" "$candidateREADME"; then
     echo !!! README Check Failed - No Change Detected !!!
+    echo "The Candidate's Score is "+$SCORE
     exit 1
 else
     echo --- README Check Passed ---

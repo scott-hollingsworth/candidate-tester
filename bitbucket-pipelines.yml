@@ -16,13 +16,13 @@ pipelines:
             #     DEBUG: "true"
             #     SONAR__TOKEN: ${SONAR_TOKEN}
             # figure out output name and location
+            - bash ./scripts/get-expected-output.sh
             - bash ./scripts/git-clone.sh $JAVA_DIR
             - bash ./scripts/java-output-test.sh $JAVA_DIR
-            - echo "--- The Candidate's Submission PASSED ---"
+            - echo "The Candidate's Score is "+$SCORE
           artifacts:
-           - ./$JAVA_DIR/output.json
-           - ./$JAVA_DIR/build/reports/*
-           - ./reports/*.txt
+           - */output.json
+           - expected.json
     dotnet/*:
       - step:
           name: Build and Test .NET Solution
@@ -40,12 +40,13 @@ pipelines:
             #       SONAR_SCANNER_OPTS: -Xmx512m
             #       DEBUG: "true"
             #       SONAR__TOKEN: ${SONAR_TOKEN}
+            - bash ./scripts/get-expected-output.sh
             - bash ./scripts/git-clone.sh $DOTNET_DIR
             - bash ./scripts/dotnet-output-test.sh $DOTNET_DIR
-            - echo "--- The Candidate's Submission PASSED ---"
+            - echo "The Candidate's Score is "+$SCORE
           artifacts:
-            - reports/*.txt
-            - $DOTNET_DIR/output.json
+            - */output.json
+            - expected.json
     javascript/*:
       - step:
           name: Build and Test JavaScript Solution
@@ -54,6 +55,10 @@ pipelines:
             - nodecustom
             - yarn
           script:
+            - set -eu
+            - set -o pipefail
+            - bash ./scripts/get-expected-output.sh
+            - bash ./scripts/git-clone.sh $JAVASCRIPT_DIR
             - cd $JAVASCRIPT_DIR
             - yarn install
             - yarn lint
