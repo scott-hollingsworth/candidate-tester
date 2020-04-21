@@ -5,7 +5,7 @@ if [ -z "$gitURL" ]; then
     echo gitURL not \set - insert the url into URL.txt to begin
     exit 1
 fi
-echo Git URl = $gitURL
+echo Git URL = $gitURL
 git clone $gitURL && gitDir="$(basename $gitURL .git)"
 #Perform commit and readme checks
 echo Checking Candidates Commits....
@@ -18,4 +18,4 @@ rm -rf $1
 cp -a $gitDir/. $1
 rm -rf $gitDir
 
-echo Candidate\s Repo Successfully Cloned
+echo Candidate\'s Repo Successfully Cloned

@@ -4,7 +4,7 @@ candidateREADME="$2/README.md"
 #should pull original readme from starter repo in the future in case of changes
 
 #Check if README exists
-if [ -f "$candidateREADME" ]; then
+if [ ! -f "$candidateREADME" ]; then
     echo !!! README Check Failed - README DOES NOT EXISTS !!!
     echo Ensure it is \in the right folder    
     exit 1

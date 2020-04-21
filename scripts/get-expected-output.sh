@@ -3,7 +3,7 @@ cd ./expected-solution
 ./gradlew clean bootrun &> /dev/null &
 sleep 30
 
-if lsof -Pi :8080 -sTCP:LISTEN -t >/dev/null ; then
+if [ ! lsof -Pi :8080 -sTCP:LISTEN -t >/dev/null ] ; then
     echo ERROR Obtaining expected.json
     echo !!! Pipeline Failure !!!
     echo Rerun the Pipeline 
