@@ -9,6 +9,7 @@ pipelines:
             - set -eu
             - set -o pipefail
             - apt-get install -y jq
+            - apt-get install lsof
             # - pipe: sonarsource/sonarcloud-scan:1.0.1
             #   variables:
             #     EXTRA_ARGS: -Dsonar.projectDescription=\"Candidate Tester" -Dsonar.eslint.reportPaths=\"report.txt\" -Dsonar.branch.name=$BITBUCKET_BRANCH
@@ -34,6 +35,7 @@ pipelines:
             - set -eu
             - set -o pipefail
             - apt-get install -y jq
+            - apt-get install lsof
             # - pipe: sonarsource/sonarcloud-scan:1.0.1
             #     variables:
             #       EXTRA_ARGS: -Dsonar.projectDescription=\"Candidate Tester" -Dsonar.eslint.reportPaths=\"report.txt\" -Dsonar.branch.name=$BITBUCKET_BRANCH
