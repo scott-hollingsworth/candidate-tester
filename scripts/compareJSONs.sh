@@ -7,9 +7,8 @@ output=$(jq --argfile expected $1 --argfile actual $2 -n 'def post_recurse(f): d
 if ! ($output); then
     echo Expected and Actual output \\do not match
     echo !!! Output Check FAILED !!!
-    echo "The Candidate's Score is "+$SCORE
-    exit 1
+else
+    echo paste score.txt | awk '{$0=$1+20}1' > score.txt
+    echo --- Output Check Passed ---
 fi
 
-echo --- Output Check Passed ---
-return $(($SCORE+20))

@@ -14,4 +14,4 @@ curl http://localhost:8080/crawl?url=$TEST_DOMAIN -o output.json
 
 echo Comparing Output to Expected...
 cd ..
-return bash ./scripts/compareJSONs.sh expected.json $1/output.json
+bash ./scripts/compareJSONs.sh expected.json $1/output.json
