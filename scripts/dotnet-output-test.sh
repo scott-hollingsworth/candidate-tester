@@ -1,11 +1,11 @@
 cd $1
+
 echo Launching Candidate\'s Application...
 dotnet restore
 dotnet publish -c release -o ./build_output 
-dotnet run build_output/Buildit.Webcrawler.dll --urls="http://localhost:8080"
-#dotnet build_output/Buildit.Webcrawler.dll https://www.jamesqquick.com > output.json
-
+dotnet run build_output/Buildit.Webcrawler.dll --urls="http://localhost:8080" &> /dev/null &
 sleep 30
+
 if lsof -Pi :8080 -sTCP:LISTEN -t >/dev/null ; then
     echo "The Candidate's Application is Running on Port 8080"
     echo --- Build Check Passed ---
