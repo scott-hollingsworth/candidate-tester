@@ -8,3 +8,5 @@ else
     echo "The Candidate's Score is "+$SCORE
     exit 1
 fi
+
+return $SCORE
