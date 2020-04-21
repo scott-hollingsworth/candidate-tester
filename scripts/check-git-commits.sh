@@ -15,4 +15,3 @@ else
 fi
 
 cd ..
-return $SCORE
