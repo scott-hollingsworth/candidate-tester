@@ -6,10 +6,11 @@ output="$(git rev-list --all --count)"
 if ! (($output > 2)) 
 then
     echo Git commit count is not greater than 2. Count = $output
+    echo 0 > score.txt
     echo !!! Commit Check FAILED !!!
 else
     echo Git commit count is $output
-    SCORE=$(($SCORE+10))
+    echo 10 > score.txt
     echo --- Commit Check Passed ---
 fi
 

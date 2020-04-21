@@ -12,7 +12,7 @@ git clone $gitURL && gitDir="$(basename $gitURL .git)"
 echo Checking Candidates README....
 bash ./scripts/compare-README.sh $1 $gitDir
 echo Checking Candidates Commits....
-SCORE="$(bash ./scripts/check-git-commits.sh $gitDir)"
+bash ./scripts/check-git-commits.sh $gitDir
 
 #overwrite starter files and copy into testing folder
 rm -rf $1
@@ -20,4 +20,3 @@ cp -a $gitDir/. $1
 rm -rf $gitDir
 
 echo Candidate\'s Repo Successfully Cloned
-return $SCORE
