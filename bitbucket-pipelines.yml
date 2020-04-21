@@ -20,7 +20,7 @@ pipelines:
             - bash ./scripts/get-expected-output.sh
             - bash ./scripts/git-clone.sh $JAVA_DIR
             - bash ./scripts/java-output-test.sh $JAVA_DIR
-            - echo "The Candidate's Score is "+$SCORE
+            - echo "The Candidate's Score is $SCORE"
           artifacts:
             - $JAVA_DIR/output.json
             - expected.json
@@ -45,7 +45,7 @@ pipelines:
             - bash ./scripts/get-expected-output.sh
             - bash ./scripts/git-clone.sh $DOTNET_DIR
             - bash ./scripts/dotnet-output-test.sh $DOTNET_DIR
-            - echo "The Candidate's Score is "+$SCORE
+            - echo "The Candidate's Score is $SCORE"
           artifacts:
             - $DOTNET_DIR/output.json
             - expected.json
