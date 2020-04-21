@@ -2,7 +2,7 @@ cd $1
 echo Launching Candidate\'s Application...
 dotnet restore
 dotnet publish -c release -o ./build_output 
-dotnet run build_output/Buildit.Webcrawler.dll
+dotnet run build_output/Buildit.Webcrawler.dll --urls="http://localhost:8080"
 #dotnet build_output/Buildit.Webcrawler.dll https://www.jamesqquick.com > output.json
 
 sleep 30
