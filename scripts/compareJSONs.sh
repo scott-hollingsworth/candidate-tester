@@ -8,7 +8,8 @@ if ! ($output); then
     echo Expected and Actual output \\do not match
     echo !!! Output Check FAILED !!!
 else
-    echo paste score.txt | awk '{$0=$1+20}1' > score.txt
+    SCORE=$(cat score.txt)
+    echo $(($SCORE+20)) > ../score.txt
     echo --- Output Check Passed ---
 fi
 
