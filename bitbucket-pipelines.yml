@@ -18,8 +18,8 @@ pipelines:
             #     SONAR__TOKEN: ${SONAR_TOKEN}
             # figure out output name and location
             - bash ./scripts/get-expected-output.sh
-            - bash ./scripts/git-clone.sh $JAVA_DIR
-            - bash ./scripts/java-output-test.sh $JAVA_DIR
+            - SCORE="$(bash ./scripts/git-clone.sh $JAVA_DIR)"
+            - SCORE="$(bash ./scripts/java-output-test.sh $JAVA_DIR)""
             - echo "The Candidate's Score is $SCORE"
           artifacts:
             - $JAVA_DIR/output.json

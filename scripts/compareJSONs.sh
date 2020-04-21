@@ -10,5 +10,6 @@ if ! ($output); then
     echo "The Candidate's Score is "+$SCORE
     exit 1
 fi
-SCORE=$(($SCORE+20))
+
 echo --- Output Check Passed ---
+return $(($SCORE+20))
